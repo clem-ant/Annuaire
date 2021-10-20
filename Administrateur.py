@@ -69,10 +69,6 @@ class Administrateur:
                 else:
                     print("On ne trouve pas l'utilisateur")
 
-def afficher_list(liste):
-    print(liste)
-    for user in liste:
-        user.afficher_informations()
 
 admin = Administrateur("PAYET", "Clément")
 admin.ajouter_utilisateur("ESTIENNE", "Clément", "niah-niah@hotmail.fr")
