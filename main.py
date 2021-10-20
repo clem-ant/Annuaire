@@ -1,7 +1,6 @@
 import socket as sk
 import random as rd
 import Administrateur as admin
-import Utilisateur as user
 
 
 administrateur = admin.Administrateur("PAYET", "Clément")
@@ -11,4 +10,4 @@ administrateur.supprimer_utilisateur("DUGUAIT", "Nicolas")
 administrateur.modifier_utilisateur("ESTIENNE", "Clément")
 administrateur.modifier_utilisateur("NonDansLaListe", "TEST")
 
-administrateur.afficher_utilisateur_list()
+administrateur.afficher_utilisateur_list() #Liste a envoyer sur le serveur
