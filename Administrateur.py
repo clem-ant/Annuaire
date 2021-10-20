@@ -30,8 +30,8 @@ class Administrateur:
             for user in range(len(self.utilisateur)):
                 if(self.utilisateur[user].get_nom() == nom and self.utilisateur[user].get_prenom() == prenom):
                     self.utilisateur.pop(user)
-                else:
-                    print("On ne trouve pas l'utilisateur")
+                    return
+            print("On ne trouve pas l'utilisateur")
 
     def modifier_utilisateur(self, nom, prenom, num_port = ""):
         while True:
@@ -68,12 +68,3 @@ class Administrateur:
                         self.utilisateur[user].set_adresse_postale(valeur_a_mettre)
                 else:
                     print("On ne trouve pas l'utilisateur")
-
-
-admin = Administrateur("PAYET", "Clément")
-admin.ajouter_utilisateur("ESTIENNE", "Clément", "niah-niah@hotmail.fr")
-admin.ajouter_utilisateur("DUGUAIT", "Nicolas", "nicolas.duguait@hotmail.fr", "0624522323", "2 rue de la gare, Toulouse, 31400")
-admin.supprimer_utilisateur("DUGUAIT", "Nicolas")
-admin.modifier_utilisateur("ESTIENNE", "Clément")
-
-admin.afficher_utilisateur_list()
