@@ -40,6 +40,14 @@ class Utilisateur:
     def set_adresse_postale(self, adresse_postale):
         self.adresse_postale = adresse_postale
     
+    def afficher_contact_list(self):
+        print("~~~~~ Affichage des contacts de " + self.nom + " " + self.prenom + " ~~~~~")
+        fichierContact = open(self.contact, "r")
+        contacts = fichierContact.read().splitlines()
+        for contact in range(len(contacts)):
+            print(contacts[contact])
+        fichierContact.close()
+
     def verifier_si_unique(self, nom, prenom, email):
         fichierContact = open(self.contact, "r")
         contact = fichierContact.read().splitlines()
@@ -49,22 +57,65 @@ class Utilisateur:
                 return False
         return True
     
-    def ajouter_contact(self, nom, prenom, email, num_port = "", adresse_postale = ""):
+    def verifier_si_existant(self, nom, prenom, email): #Retourne True si il existe
         fichierContact = open(self.contact, "r")
         contact = fichierContact.read().splitlines()
+        fichierContact.close()
         for cont in contact:
             splited = cont.split(",")
             if(splited[0] == nom and splited[1] == prenom and splited[2] == email):
-                print("L'utilisateur est déjà dans votre Annuaire")
-                return
-        fichierContact = open(self.contact, "a")
-        fichierContact.write(nom+","+prenom +","+ email +","+ num_port + "," + adresse_postale + "\n")
-        fichierContact.close()
+                return True
+        return False
 
-    def retirer_contact(self, nom, prenom, num_port= ""):
+    def ajouter_contact(self, nom, prenom, email, num_port = "", adresse_postale = ""):
+        if(self.verifier_si_existant(nom, prenom, email) == False): #Donc si il existe pas
+            fichierContact = open(self.contact, "a")
+            fichierContact.write(nom+","+prenom +","+ email +","+ num_port + "," + adresse_postale + "\n")
+            fichierContact.close()
+        else:
+            print("Vous avez déjà ce contact dans votre Annuaire")
+
+    def trouver_indice_contact(self, nom, prenom, email):
+        fichierContact = open(self.contact, "r")
+        infos = fichierContact.read().splitlines()
+        fichierContact.close()
+        compteur = 0 
+        for inf in infos:
+            splited = inf.split(",")
+            print(splited[0])
+            if(splited[0] == nom and splited[1] == prenom and splited[2] == email):
+                return compteur
+            compteur += 1
+        return compteur
+
+    def modifier_contact(self, nom, prenom, email): #On peut check si c'est un mail valide
+        if(self.verifier_si_existant(nom, prenom, email)):
+            pass
+        else:
+            print("Vous essayez de modifier un contact non existant")
+            return
+        fichierContact = open(self.contact, "r")
+        contacts = fichierContact.read().splitlines()
+        fichierContact.close()
+        indice_contact = self.trouver_indice_contact(nom, prenom, email)
+        while True:
+            print("Quel élément voulez vous changer : ")
+            index_changement = int(input("[1] Nom\n[2] Prenom\n[3] Email\n[4] Numéro de Portable\n[5] Adresse Postale\n"))
+            if(index_changement > 0 or index_changement <= 5):
+                break
+        valeur_a_mettre = input("Par quoi voulez vous le remplacer ?\n")
+        tmp = contacts[int(indice_contact)]
+        new_contact = tmp.split(",")
+        self.retirer_contact(nom, prenom) #Grâce à la condition du début on sait que c'est vrai.
+        new_contact[index_changement-1] = valeur_a_mettre
+        self.ajouter_contact(new_contact[0], new_contact[1], new_contact[2], new_contact[3], new_contact[4])
+
+
+    def retirer_contact(self, nom, prenom, num_port= ""): #Prendre l'email ? Au cas ou doublons ?
         fichierContact = open(self.contact, "r")
         infos = fichierContact.read().splitlines()
         new_file = open(self.contact, "w")
+
         if(len(infos) == 0):
             print("Il n'y a personne dans votre Annuaire, vous ne pouvez donc pas en supprimer")
             return
@@ -78,3 +129,5 @@ class Utilisateur:
                 splited = info.split(",")
                 if splited[0] != nom and splited[1] != prenom:
                     new_file.write(info + "\n")
+        fichierContact.close()
+        new_file.close()

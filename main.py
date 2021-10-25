@@ -19,5 +19,7 @@ clement.ajouter_contact("Cuvelier", "Mathias", "matoumatou@gmail.com", "12345674
 clement.ajouter_contact("Lacombe", "Sebastien", "homme@sportif.fr", "118218", "Loin")
 clement.ajouter_contact("Deconinck", "Lucas", "Lucas.deconinck@univ-tlse3.fr", "", "Proche")
 
-clement.retirer_contact("Cuvelier", "Mathias")
-clement.retirer_contact("Deconinck", "Lucas")
+#clement.retirer_contact("Cuvelier", "Mathias")
+#clement.retirer_contact("Deconinck", "Lucas")
+clement.modifier_contact("Lacombe", "Sebastien", "homme@sportif.fr")
+clement.afficher_contact_list()
