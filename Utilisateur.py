@@ -8,6 +8,8 @@ class Utilisateur:
         self.num_port = num_port
         self.adresse_postale = adresse_postale
         self.contact = "contact_"+nom+"_"+prenom+".csv"
+        tmp = open(self.contact, "a")
+        tmp.close()
         
 
     def get_nom(self):
@@ -88,7 +90,7 @@ class Utilisateur:
             compteur += 1
         return compteur
 
-    def modifier_contact(self, nom, prenom, email): #On peut check si c'est un mail valide
+    def modifier_contact(self, nom, prenom, email): #On peut check si c'est un mail
         if(self.verifier_si_existant(nom, prenom, email)):
             pass
         else:
