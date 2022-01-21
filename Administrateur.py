@@ -24,8 +24,9 @@ class Administrateur:
         print(contacts)
         
         for i in range(len(contacts)):
-            print(i)
-            if(login == contacts[i].split(";")):
+            print(contacts[i])
+            print(contacts[i].split(";")[0])
+            if(login == contacts[i].split(";")[0]):
                 print("test la vie dma mere")
                 return 20
         fichierLogin.close()
