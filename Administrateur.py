@@ -32,10 +32,9 @@ class Administrateur:
         fichierLogin.write(login+";"+mdp+"\n")
         fichierLogin.close()
         Utilisateur(nom, prenom, email, num_port, adresse_postale) #Création de l'utilisateur directement dans le constructeur
-        fichierAutho = open("authorisation.txt", "w")
+        fichierAutho = open("authorisation.txt", "a")
         fichierAutho.write(login+";2;"+login+"_LDAP.csv"+"\n")
         fichierAutho.close()
-        
         return 3
         
     
