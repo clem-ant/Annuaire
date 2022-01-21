@@ -18,8 +18,24 @@ class Administrateur:
             print("Adresse postale : " + user.get_adresse_postale())
             print("\n")
 
-    def ajouter_utilisateur(self, nom, prenom, email, num_port = "", adresse_postale = ""):
-        self.utilisateur.append(Utilisateur(nom, prenom, email, num_port, adresse_postale))
+    def ajouter_utilisateur(self, login, mdp, nom, prenom, email, num_port = "", adresse_postale = ""):
+        fichierLogin = open("login.txt", "r")
+        contacts = fichierLogin.read().splitlines()
+        print(contacts)
+        
+        for i in range(len(contacts)):
+            print(i)
+            if(login == contacts[i].split(";")):
+                print("test la vie dma mere")
+                return 20
+        fichierLogin.close()
+        fichierLogin = open("login.txt", "w")
+        fichierLogin.write(login+";"+mdp)
+        fichierLogin.close()
+        
+        
+        Utilisateur(nom, prenom, email, num_port, adresse_postale) #Création de l'utilisateur directement dans le constructeur
+        
     
     def supprimer_utilisateur(self, nom, prenom, num_port = ""):
         if num_port != "": #On priorise si il existe un numero de telephone c'est plus simple

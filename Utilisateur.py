@@ -7,11 +7,10 @@ class Utilisateur:
         self.email = email
         self.num_port = num_port
         self.adresse_postale = adresse_postale
-        self.contact = "contact_"+nom+"_"+prenom+".csv"
+        self.contact = nom+"_"+prenom+"_LDAP"+".csv"
         tmp = open(self.contact, "a")
         tmp.close()
         
-
     def get_nom(self):
         return self.nom
 
