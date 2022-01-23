@@ -2,9 +2,11 @@ import Administrateur as admin
 import Utilisateur as user
 
 
-administrateur = admin.Administrateur("PAYET", "Clément")
+administrateur = admin.Administrateur()
+clement = user.Utilisateur()
 administrateur.ajouter_utilisateur("niahniah", "azerty","ESTIENNE", "Clément", "niah-niah@hotmail.fr")
 administrateur.ajouter_utilisateur("nicoco", "qwerty","DUGUAIT", "Nicolas", "nicolas.duguait@hotmail.fr", "0624522323", "2 rue de la gare, Toulouse, 31400")
+clement.ajouter_contact("niahniah","DUGUAIT_Nicolas;nicolas.duguait@hotmail.fr;0624522323;2 rue de la gare, Toulouse, 31400")
 # administrateur.supprimer_utilisateur("DUGUAIT", "Nicolas")
 # #administrateur.modifier_utilisateur("ESTIENNE", "Clément")
 # #administrateur.modifier_utilisateur("NonDansLaListe", "TEST")
