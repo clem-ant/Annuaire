@@ -17,17 +17,17 @@ Fin
 '''
 
 def get_autorisation(login, nom_annuaire):
-        f = open('autorisation.csv', 'r')
+        f = open('authorisation.txt', 'r')
         fi= f.read().splitlines()
-        print("test")
-        print(fi)
+        # print("test")
+        # print(fi)
 
         for ligne in fi :
-            print(login, fi[0])
-            print(login in fi)
+        #     print(login, fi[0])
+        #     print(login in fi)
             if (login in fi[0] and nom_annuaire in fi[0]) :
                 login, droit, nom_annuaire = ligne.split(";")
-                print(droit)
+                # print(droit)
                 return droit
 
         f.close()

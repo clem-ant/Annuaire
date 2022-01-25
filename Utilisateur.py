@@ -1,3 +1,6 @@
+import autorisation as auth
+
+
 class Utilisateur:
     # #TODO se connecter au serveur
 
@@ -71,8 +74,7 @@ class Utilisateur:
     def ajouter_contact(self, login, donnees):
         # if(self.verifier_si_existant(nom, prenom, email) == False): #Donc si il existe pas
         nom_annuaire = donnees.split(";")[0]+"_LDAP.csv"
-        # droit = get_authorisation(login, nom_annuaire)
-        droit = 2
+        droit =  auth.get_authorisation(login, nom_annuaire)
         if(droit == 2):
             print(nom_annuaire)
             fichierContact = open(nom_annuaire, "a")
