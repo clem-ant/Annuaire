@@ -1,6 +1,3 @@
-import autorisation as auth
-
-
 class Utilisateur:
     # #TODO se connecter au serveur
 
@@ -74,7 +71,7 @@ class Utilisateur:
     def ajouter_contact(self, login, donnees):
         # if(self.verifier_si_existant(nom, prenom, email) == False): #Donc si il existe pas
         nom_annuaire = donnees.split(";")[0]+"_LDAP.csv"
-        droit =  auth.get_authorisation(login, nom_annuaire)
+        droit =  self.get_autorisation(login, nom_annuaire)
         if(droit == 2):
             print(nom_annuaire)
             fichierContact = open(nom_annuaire, "a")
@@ -84,6 +81,22 @@ class Utilisateur:
         else:
             print("Vous avez déjà ce contact dans votre Annuaire")
             return 9
+        
+    def get_autorisation(self, login, nom_annuaire):
+        f = open('authorisation.txt', 'r')
+        fi= f.read().splitlines()
+        # print("test")
+        # print(fi)
+
+        for ligne in fi :
+        #     print(login, fi[0])
+        #     print(login in fi)
+            if (login in fi[0] and nom_annuaire in fi[0]) :
+                login, droit, nom_annuaire = ligne.split(";")
+                # print(droit)
+                return droit
+
+        f.close()
 
     # def trouver_indice_contact(self, nom, prenom, email):
     #     fichierContact = open(self.contact, "r")

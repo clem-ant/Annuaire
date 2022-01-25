@@ -21,7 +21,21 @@ def test_ajouter_utilisateur():
     #On regarde dans le fichier authorisation.txt si il y a bien écrit la ligne qui dit que la personne a comme droit 2 dans ce même fichier
     print("Test ajouter utilisateur : OK")
     
+def test_ajouter_contact():
+    testAddC = user.Utilisateur()
+    #TODO
+    assert testAddC.ajouter_contact()
+    #TODO
+    
+def test_get_authorisation():
+    testGetAuth = user.Utilisateur()
+    #TODO
+    assert testGetAuth.get_autorisation()
+    #TODO
+      
 def appeler_tests():
-    test_ajouter_utilisateur() #Ajouter paramètre afin de vérifier pour n'importe quel nom ? 
+    test_ajouter_utilisateur()
+    test_ajouter_contact()
+    test_get_authorisation()
     
 appeler_tests()
