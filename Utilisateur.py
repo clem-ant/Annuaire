@@ -86,7 +86,7 @@ class Utilisateur:
         f = open('authorisation.txt', 'r')
         fi= f.read().splitlines()
         # print("test")
-
+        droit = 0
         for ligne in fi :
             ligne1 = ligne.split(";")
             if (login == ligne1[0] and nom_annuaire == ligne1[2]) :
