@@ -3,7 +3,7 @@ import Utilisateur as user
 import random
 import string
 import os
-
+import fileinput
 
 
 def test_ajouter_utilisateur(loginRandom, charrandom):
