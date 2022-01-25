@@ -30,13 +30,10 @@ def test_ajouter_utilisateur(loginRandom, charrandom):
     
 def test_ajouter_contact(loginRandom):
     testAddC = user.Utilisateur()
-    administrateur = admin.Administrateur()
-    administrateur.ajouter_utilisateur(loginRandom, "azerty","ESTIENNE", "Clément", "niah-niah@hotmail.fr")
-                                      
-    #TODO
+    
     assert testAddC.ajouter_contact(loginRandom,"DUGUAIT_Nicolas;nicolas.duguait@hotmail.fr;0624522323;2 rue de la gare, Toulouse, 31400")==8
     assert testAddC.ajouter_contact(loginRandom,"DUGUAIT_Nicolas;nicolas.duguait@hotmail.fr;0624522323;2 rue de la gare, Toulouse, 31400")==9
-    #TODO
+    
     
 def test_get_authorisation(loginRandom):
     testGetAuth = user.Utilisateur()
@@ -52,5 +49,6 @@ def appeler_tests():
     test_ajouter_utilisateur(loginRandom, charrandom)
     test_ajouter_contact(loginRandom)
     test_get_authorisation(loginRandom)
+    os.remove(loginRandom+"_LDAP.csv")
     
 appeler_tests()
