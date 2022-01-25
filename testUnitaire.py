@@ -34,8 +34,13 @@ def test_ajouter_utilisateur():
     
 def test_ajouter_contact():
     testAddC = user.Utilisateur()
+    administrateur = admin.Administrateur()
+    clement = user.Utilisateur()
+    administrateur.ajouter_utilisateur("cheh.txt", "azerty","ESTIENNE", "Clément", "niah-niah@hotmail.fr")
+                                       
     #TODO
-    assert testAddC.ajouter_contact()
+    testAddC.ajouter_contact("cheh.txt","DUGUAIT_Nicolas;nicolas.duguait@hotmail.fr;0624522323;2 rue de la gare, Toulouse, 31400")==8
+    testAddC.ajouter_contact("cheh.txt","DUGUAIT_Nicolas;nicolas.duguait@hotmail.fr;0624522323;2 rue de la gare, Toulouse, 31400")==9
     #TODO
     
 def test_get_authorisation():
