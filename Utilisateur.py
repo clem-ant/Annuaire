@@ -69,10 +69,11 @@ class Utilisateur:
     #     return False
 
     def ajouter_contact(self, login, donnees):
-        # if(self.verifier_si_existant(nom, prenom, email) == False): #Donc si il existe pas
-        nom_annuaire = donnees.split(";")[0]+"_LDAP.csv"
+        nom_annuaire = login+"_LDAP.csv"
         droit =  self.get_autorisation(login, nom_annuaire)
-        if(droit == 2):
+        annuaire = open(login+"_LDAP.csv")
+        LAnnuaire = annuaire.read().splitlines()
+        if(droit == 2 and donnees not in LAnnuaire):
             print(nom_annuaire)
             fichierContact = open(nom_annuaire, "a")
             fichierContact.write(donnees + "\n")
