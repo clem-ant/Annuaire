@@ -2,6 +2,7 @@ import Administrateur as admin
 import Utilisateur as user
 import random
 import string
+import os
 
 
 
@@ -13,9 +14,17 @@ def test_ajouter_utilisateur():
     #On ouvre le fichier login afin de vérifier qu'il y a bien le login & le mdp
     fichierLogin = open("login.txt", "r")
     ligne = fichierLogin.read().splitlines()
+    
+    
+    
     assert ligne[-1] == loginRandom+";azerty" #Assert : bloquant si ça passe pas.
-    print("Test ajouter utilisateur : OK")
+    
     #On regarde dans l'arborescence si il y a bien l'annuaire de ESTIENNE Clément qui est crée.
+    dir = os.listdir()
+    assert loginRandom+"_LDAP.csv" in dir
+            
+    
+    print("Test ajouter utilisateur : OK")
     
 def appeler_tests():
     test_ajouter_utilisateur() #Ajouter paramètre afin de vérifier pour n'importe quel nom ? 
