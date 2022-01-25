@@ -86,16 +86,14 @@ class Utilisateur:
         f = open('authorisation.txt', 'r')
         fi= f.read().splitlines()
         # print("test")
-        # print(fi)
 
         for ligne in fi :
-        #     print(login, fi[0])
-        #     print(login in fi)
-            if (login in fi[0] and nom_annuaire in fi[0]) :
+            ligne1 = ligne.split(";")
+            if (login == ligne1[0] and nom_annuaire == ligne1[2]) :
                 login, droit, nom_annuaire = ligne.split(";")
                 # print(droit)
-                return droit
-
+                return int(droit) #Int car de base les choses lu dans un fichier sont en string mais la on sait que ce sera forcément des int
+        #TODO il manque soit un return soit il manque de fermer le fichier AVANT de return le droit sur la ligne juste au dessus
         f.close()
 
     # def trouver_indice_contact(self, nom, prenom, email):

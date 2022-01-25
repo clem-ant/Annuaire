@@ -14,10 +14,10 @@ def test_ajouter_utilisateur():
     fichierLogin = open("login.txt", "r")
     ligne = fichierLogin.read().splitlines()
     #On ouvre le fichier login afin de vérifier qu'il y a bien le login & le mdp
-    assert ligne[-1] == loginRandom+";"+charrandom #Assert : bloquant si ça passe pas
+    assert ligne[-1] == loginRandom+";"+charrandom, "La dernière ligne du fichier login.txt n'est pas celle qui a été demandé" #Assert : bloquant si ça passe pas
     #On regarde dans l'arborescence si il y a bien l'annuaire de ESTIENNE Clément qui est crée.
     dir = os.listdir()
-    assert loginRandom+"_LDAP.csv" in dir
+    assert loginRandom+"_LDAP.csv" in dir, "Il n'y a pas eu création de l'annuaire dans l'arboressence"
     #On regarde dans le fichier authorisation.txt si il y a bien écrit la ligne qui dit que la personne a comme droit 2 dans ce même fichier
     print("Test ajouter utilisateur : OK")
     
@@ -30,12 +30,12 @@ def test_ajouter_contact():
 def test_get_authorisation():
     testGetAuth = user.Utilisateur()
     #TODO
-    assert testGetAuth.get_autorisation()
+    assert testGetAuth.get_autorisation("TESTNDLIUEARD6", "TESTNDLIUEARD6_LDAP.csv") == 2, "Lors de la création du compte de l'utilisateur, il n'y a pas automatiquement la création de son autorisation dans le fichier authorisation.txt"
     #TODO
       
 def appeler_tests():
     test_ajouter_utilisateur()
-    test_ajouter_contact()
+    # test_ajouter_contact()
     test_get_authorisation()
     
 appeler_tests()
