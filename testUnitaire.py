@@ -3,7 +3,6 @@ import Utilisateur as user
 import random
 import string
 import os
-import fileinput
 
 
 def test_ajouter_utilisateur(loginRandom, charrandom):
@@ -26,7 +25,10 @@ def test_ajouter_utilisateur(loginRandom, charrandom):
     fLigneAuth = fichierAuth.read().splitlines()
     assert fLigneAuth[-1] == loginRandom+";2;"+loginRandom+"_LDAP.csv"
 
+    fichierAuth.close()
+    fichierLogin.close()
     print("Test ajouter utilisateur : OK")
+    
     
 def test_ajouter_contact(loginRandom):
     testAddC = user.Utilisateur()
@@ -51,5 +53,21 @@ def appeler_tests():
     test_ajouter_contact(loginRandom)
     test_get_authorisation(loginRandom)
     os.remove(loginRandom+"_LDAP.csv")
+    
+    fichierLogin = open("login.txt", "r")
+    ligne = fichierLogin.read().splitlines()
+    fichierLogin.close()
+    fichierLogin = open("login.txt", "w")
+    for i in range(len(ligne)-1): #réécrit le fichier sans la dernière ligne déjà crée
+        fichierLogin.write(ligne[i]+"\n")
+    fichierLogin.close()
+    
+    fichierAuth = open("authorisation.txt", "r")
+    fLigneAuth = fichierAuth.read().splitlines()
+    fichierAuth.close()
+    fichierAuth = open("authorisation.txt", "w")
+    for i in range(len(fLigneAuth)-1): #réécrit le fichier sans la dernière ligne déjà crée
+        fichierAuth.write(fLigneAuth[i]+"\n")
+    fichierAuth.close()
     
 appeler_tests()
