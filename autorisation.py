@@ -28,9 +28,10 @@ def get_autorisation(login, nom_annuaire):
             if (login in fi[0] and nom_annuaire in fi[0]) :
                 login, droit, nom_annuaire = ligne.split(";")
                 # print(droit)
-                return droit
+                break
 
         f.close()
+        return droit
 
 get_autorisation("cmathias","cmathias_LDAP.csv")
 
