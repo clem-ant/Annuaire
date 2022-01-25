@@ -1,2 +1,4 @@
 cheh.txt;2;cheh.txt_LDAP.csv
 TESTV9MK67U5L2;2;TESTV9MK67U5L2_LDAP.csv
+niahniah;2;niahniah_LDAP.csv
+nicoco;2;nicoco_LDAP.csv

@@ -98,6 +98,35 @@ class Utilisateur:
         return int(droit) #Int car de base les choses lu dans un fichier sont en string mais la on sait que ce sera forcément des int
         #TODO il manque soit un return soit il manque de fermer le fichier AVANT de return le droit sur la ligne juste au dessus
         
+    def search_contact(self,login, mdp, donnees):
+        tab = [2]
+        tab = donnees.split(";")
+    
+        nom_annuaire = tab[0] + "_LDAP.csv"
+        print(nom_annuaire)
+        droit = self.get_autorisation(login, nom_annuaire)
+        boolean = False
+        if(droit >= 1):
+            fichier = open(nom_annuaire, "r")
+            for ligne in fichier:
+                if (tab[1] in ligne):
+                    code_erreur = 00
+                    resultat = []
+                    resultat = ligne.split(";")
+                    resultat = ' '.join(resultat)
+                    print(f"Résultat : {resultat}")
+                    boolean = True
+    
+            if(boolean == False):
+                print("Contact non trouvé")
+                code_erreur= 12
+                return code_erreur  
+            fichier.close()
+        else:
+            print("Vous n'avez pas les droit de rechercher un contact")
+        
+
+
 
     # def trouver_indice_contact(self, nom, prenom, email):
     #     fichierContact = open(self.contact, "r")
