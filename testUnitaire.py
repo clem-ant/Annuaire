@@ -34,6 +34,7 @@ def test_ajouter_contact(loginRandom):
     assert testAddC.ajouter_contact(loginRandom,"DUGUAIT_Nicolas;nicolas.duguait@hotmail.fr;0624522323;2 rue de la gare, Toulouse, 31400")==8
     assert testAddC.ajouter_contact(loginRandom,"DUGUAIT_Nicolas;nicolas.duguait@hotmail.fr;0624522323;2 rue de la gare, Toulouse, 31400")==9
     
+    #TODO
     
 def test_get_authorisation(loginRandom):
     testGetAuth = user.Utilisateur()
