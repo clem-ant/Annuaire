@@ -32,18 +32,17 @@ def test_ajouter_utilisateur(loginRandom, charrandom):
     
 def test_ajouter_contact(loginRandom):
     testAddC = user.Utilisateur()
-    
     assert testAddC.ajouter_contact(loginRandom,"DUGUAIT_Nicolas;nicolas.duguait@hotmail.fr;0624522323;2 rue de la gare, Toulouse, 31400")==8
     assert testAddC.ajouter_contact(loginRandom,"DUGUAIT_Nicolas;nicolas.duguait@hotmail.fr;0624522323;2 rue de la gare, Toulouse, 31400")==9
-    
-    #TODO
+    #TODO faire le test d'ajouter un contact sans tous les paramètres
+    #TODO Ajouter 2 contacts différent
     
 def test_get_authorisation(loginRandom):
     testGetAuth = user.Utilisateur()
     #TODO
     assert testGetAuth.get_autorisation(loginRandom, loginRandom+"_LDAP.csv") == 2, "Lors de la création du compte de l'utilisateur, il n'y a pas automatiquement la création de son autorisation dans le fichier authorisation.txt"
     assert testGetAuth.get_autorisation("test", "test_LDAP.csv") == 0
-    #TODO
+    #TODO Vérifier pour les authorisations à 1 & 0 mais avec des personnes qui existent
       
 def appeler_tests():
     charrandom = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
