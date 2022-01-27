@@ -45,8 +45,7 @@ def test_ajouter_utilisateur(loginRandom, charrandom):
     
     
 def test_ajouter_contact(loginRandom):
-    testAddC = user.Utilisateur()
-    
+    testAddC = user.Utilisateur()    
     blockPrint() #Permet de mute les prints de la fonction ajouter contact juste pour ces tests
     assert testAddC.ajouter_contact(loginRandom,"DUGUAIT_Nicolas;nicolas.duguait@hotmail.fr;0624522323;2 rue de la gare, Toulouse, 31400")==8,  bcolors.WARNING+ "Problème lors de l'ajout d'un premier contact" + bcolors.ENDC
     assert testAddC.ajouter_contact(loginRandom,"DUGUAIT_Nicolas;nicolas.duguait@hotmail.fr;0624522323;2 rue de la gare, Toulouse, 31400")==9,  bcolors.WARNING+ "Problème lors de l'ajout d'un contact déjà dans l'annuaire" +bcolors.ENDC
@@ -61,7 +60,6 @@ def test_get_authorisation(loginRandom):
     assert testGetAuth.get_autorisation("test", "test_LDAP.csv") == 0
     print(bcolors.OKGREEN + "Test get authorisation : "+bcolors.BOLD+"OK"+ bcolors.ENDC)
     #TODO
-      
 def appeler_tests():
     print(bcolors.HEADER + "Début des tests" + bcolors.ENDC)
     charrandom = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
