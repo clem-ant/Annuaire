@@ -74,7 +74,6 @@ class Utilisateur:
         annuaire = open(login+"_LDAP.csv")
         LAnnuaire = annuaire.read().splitlines()
         if(droit == 2 and donnees not in LAnnuaire):
-            print(nom_annuaire)
             fichierContact = open(nom_annuaire, "a")
             fichierContact.write(donnees + "\n")
             fichierContact.close()
