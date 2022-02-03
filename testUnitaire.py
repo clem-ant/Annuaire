@@ -29,7 +29,7 @@ def test_ajouter_utilisateur(loginRandom, charrandom):
     assert ligne[-1] == loginRandom+";"+charrandom, bcolors.WARNING+ "La dernière ligne du fichier login.txt n'est pas celle qui a été demandé" + bcolors.ENDC #Assert : bloquant si ça passe pas
     
     
-    #On regarde dans l'arborescence si il y a bien l'annuaire de ESTIENNE Clément qui est crée.
+    #On regarde dans l'arborescence si il y a bien l'annuaire du loginRandom qui est crée.
     dir = os.listdir()
     assert loginRandom+"_LDAP.csv" in dir,  bcolors.WARNING+"Il n'y a pas eu création de l'annuaire dans l'arboressence"+bcolors.ENDC
     
@@ -51,15 +51,17 @@ def test_ajouter_contact(loginRandom):
     assert testAddC.ajouter_contact(loginRandom,"DUGUAIT_Nicolas;nicolas.duguait@hotmail.fr;0624522323;2 rue de la gare, Toulouse, 31400")==9,  bcolors.WARNING+ "Problème lors de l'ajout d'un contact déjà dans l'annuaire" +bcolors.ENDC
     enablePrint() #Permet de réactiver les prints 
     print(bcolors.OKGREEN + "Test ajouter contact : "+bcolors.BOLD+"OK"+ bcolors.ENDC)
-    #TODO
     
 def test_get_authorisation(loginRandom):
     testGetAuth = user.Utilisateur()
-    #TODO
     assert testGetAuth.get_autorisation(loginRandom, loginRandom+"_LDAP.csv") == 2,  bcolors.WARNING+ "Lors de la création du compte de l'utilisateur, il n'y a pas automatiquement la création de son autorisation dans le fichier authorisation.txt" + bcolors.ENDC
-    assert testGetAuth.get_autorisation("test", "test_LDAP.csv") == 0
+    assert testGetAuth.get_autorisation("test", "test_LDAP.csv") == 0, "Une personne qui n'est pas dans l'annuaire n'a pas une authorisation != 0"
+    assert testGetAuth.get_autorisation("mathias", "nicoco_LDAP.csv") == 1, "Problème lors de l'autorisation == 1"
+    assert testGetAuth.get_autorisation("sebb", "niahniah_LDAP.csv") == 0, "Problème lors de l'autorisation == 0"
+    assert testGetAuth.get_autorisation("pas_dedans", "niahniah_LDAP.csv") == 0, "Une personne pas dedans ne peut pas avoir d'autorisation"
     print(bcolors.OKGREEN + "Test get authorisation : "+bcolors.BOLD+"OK"+ bcolors.ENDC)
-    #TODO
+    
+    
 def appeler_tests():
     print(bcolors.HEADER + "Début des tests" + bcolors.ENDC)
     charrandom = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))

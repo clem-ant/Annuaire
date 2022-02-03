@@ -1,2 +1,4 @@
 niahniah;2;niahniah_LDAP.csv
 nicoco;2;nicoco_LDAP.csv
+mathias;1;nicoco_LDAP.csv
+sebb;0;niahniah_LDAP.csv
