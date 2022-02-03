@@ -71,9 +71,11 @@ def test_get_authorisation(loginRandom):
 def test_search_contact(loginRandom, charrandom):
     testSearchUser = user.Utilisateur()
     
+    blockPrint() #Permet de mute les prints de la fonction ajouter contact juste pour ces tests
     assert testSearchUser.search_contact(loginRandom, charrandom, loginRandom+";DUGUAIT") == "DUGUAIT_Nicolas nicolas.duguait@hotmail.fr 0624522323 2 rue de la gare, Toulouse, 31400"
     assert testSearchUser.search_contact(loginRandom, charrandom, loginRandom+";Inconnu") == 12
     assert testSearchUser.search_contact("sebb", "", "niahniah") == 11
+    enablePrint() #Permet de réactiver les prints
     
 def appeler_tests():
     print(bcolors.HEADER + "Début des tests" + bcolors.ENDC)
