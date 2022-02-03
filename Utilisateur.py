@@ -46,7 +46,6 @@ class Utilisateur:
                     resultat = ligne.split(";") # Récupération des données dans une liste 
                     resultat = ' '.join(resultat) 
                     boolean = True # Booléen à l'etat vrai qui indique qu'il existe dans l'annuaire un contact dans la recherche effectuée
-                    print(resultat.split("\n")[0])
                     return resultat.split("\n")[0]
             if(boolean == False): # Si on ne trouve pas dans l'annuaire le contact saisi
                 print("Contact non trouvé")
