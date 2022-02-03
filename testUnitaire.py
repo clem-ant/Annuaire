@@ -1,3 +1,4 @@
+from imghdr import tests
 import Administrateur as admin
 import Utilisateur as user
 import os, sys, string, random
@@ -67,6 +68,12 @@ def test_get_authorisation(loginRandom):
     assert testGetAuth.get_autorisation("pas_dedans", "niahniah_LDAP.csv") == 0, "Une personne pas dedans ne peut pas avoir d'autorisation"
     print(bcolors.OKGREEN + "Test get authorisation : "+bcolors.BOLD+"OK"+ bcolors.ENDC)
     
+def test_search_contact(loginRandom, charrandom):
+    testSearchUser = user.Utilisateur()
+    
+    assert testSearchUser.search_contact(loginRandom, charrandom, loginRandom+";DUGUAIT") == "DUGUAIT_Nicolas nicolas.duguait@hotmail.fr 0624522323 2 rue de la gare, Toulouse, 31400"
+    assert testSearchUser.search_contact(loginRandom, charrandom, loginRandom+";Inconnu") == 12
+    assert testSearchUser.search_contact("sebb", "", "niahniah") == 11
     
 def appeler_tests():
     print(bcolors.HEADER + "Début des tests" + bcolors.ENDC)
@@ -76,6 +83,7 @@ def appeler_tests():
     test_ajouter_utilisateur(loginRandom, charrandom)
     test_ajouter_contact(loginRandom)
     test_get_authorisation(loginRandom)
+    test_search_contact(loginRandom, charrandom)
     os.remove(loginRandom+"_LDAP.csv")
     
     fichierLogin = open("login.txt", "r")

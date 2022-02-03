@@ -30,29 +30,30 @@ class Utilisateur:
         #TODO il manque soit un return soit il manque de fermer le fichier AVANT de return le droit sur la ligne juste au dessus
         
     def search_contact(self,login, mdp, donnees):
-        tab = [2]
-        tab = donnees.split(";")
+    #Fonction qui permet de rechercher un contact en fonction d'un annuaire donné
+        tab = [2] 
+        tab = donnees.split(";") #Récupération des données incluant le nom de l'annuaire et la chaine de caractère de recherche 
     
         nom_annuaire = tab[0] + "_LDAP.csv"
-        print(nom_annuaire)
-        droit = self.get_autorisation(login, nom_annuaire)
+        droit = self.get_autorisation(login, nom_annuaire) # Utilisation de la fonction qui vérfie si l'utilisateur possède l'autorisation ou non de rechercher un contact
         boolean = False
-        if(droit >= 1):
-            fichier = open(nom_annuaire, "r")
+        if(droit >= 1): # Si l'utilisateur possède les droits
+            fichier = open(nom_annuaire, "r") #Ouverture de l'annuaire
             for ligne in fichier:
-                if (tab[1] in ligne):
+                if (tab[1] in ligne): # S'il existe dans l'annuaire la recherche effectuée
                     code_erreur = 00
                     resultat = []
-                    resultat = ligne.split(";")
-                    resultat = ' '.join(resultat)
-                    print(f"Résultat : {resultat}")
-                    boolean = True
-    
-            if(boolean == False):
+                    resultat = ligne.split(";") # Récupération des données dans une liste 
+                    resultat = ' '.join(resultat) 
+                    boolean = True # Booléen à l'etat vrai qui indique qu'il existe dans l'annuaire un contact dans la recherche effectuée
+                    print(resultat.split("\n")[0])
+                    return resultat.split("\n")[0]
+            if(boolean == False): # Si on ne trouve pas dans l'annuaire le contact saisi
                 print("Contact non trouvé")
                 code_erreur= 12
-                return code_erreur  
-            fichier.close()
-        else:
+                return code_erreur  # Retourne un code erreur égal à 12
+            fichier.close() # Fermeture du fichier
+        else: # Dans le cas où l'utilisateur n'a pas les droits
             print("Vous n'avez pas les droit de rechercher un contact")
+            return 11
         
