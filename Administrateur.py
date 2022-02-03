@@ -1,12 +1,7 @@
-from asyncore import write
-from multiprocessing import AuthenticationError
-from Utilisateur import Utilisateur
-#: le nom, le prénom, le numéro de téléphone portable, l’adresse postale, l’adresse
-#mail. Les champs nom, prénom et adresse mail sont obligatoires.
 class Administrateur:
 
 
-    def ajouter_utilisateur(self, login, mdp, nom, prenom, email, num_port = "", adresse_postale = ""):
+    def ajouter_utilisateur(self, login, mdp):
         fichierLogin = open("login.txt", "r")
         contacts = fichierLogin.read().splitlines()        
         for i in range(len(contacts)):
