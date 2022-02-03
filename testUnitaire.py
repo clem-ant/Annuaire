@@ -21,7 +21,7 @@ def enablePrint():
 
 def test_ajouter_utilisateur(loginRandom, charrandom):
     test1 = admin.Administrateur()
-    test1.ajouter_utilisateur(loginRandom, charrandom, loginRandom, loginRandom,loginRandom+"@hotmail.fr")
+    test1.ajouter_utilisateur(loginRandom, charrandom)
     fichierLogin = open("login.txt", "r")
     ligne = fichierLogin.read().splitlines()
     
