@@ -49,7 +49,13 @@ def test_ajouter_contact(loginRandom):
     blockPrint() #Permet de mute les prints de la fonction ajouter contact juste pour ces tests
     assert testAddC.ajouter_contact(loginRandom,"DUGUAIT_Nicolas;nicolas.duguait@hotmail.fr;0624522323;2 rue de la gare, Toulouse, 31400")==8,  bcolors.WARNING+ "Problème lors de l'ajout d'un premier contact" + bcolors.ENDC
     assert testAddC.ajouter_contact(loginRandom,"DUGUAIT_Nicolas;nicolas.duguait@hotmail.fr;0624522323;2 rue de la gare, Toulouse, 31400")==9,  bcolors.WARNING+ "Problème lors de l'ajout d'un contact déjà dans l'annuaire" +bcolors.ENDC
-    enablePrint() #Permet de réactiver les prints 
+    enablePrint() #Permet de réactiver les prints
+    
+    #On vérifie que la ligne a été écrite dans l'annuaire de la personne
+    fichier = open(loginRandom+"_LDAP.csv", "r") 
+    contenu = fichier.read().splitlines()
+    assert contenu[0] == "DUGUAIT_Nicolas;nicolas.duguait@hotmail.fr;0624522323;2 rue de la gare, Toulouse, 31400", "Les données n'ont pas été écrites"
+    
     print(bcolors.OKGREEN + "Test ajouter contact : "+bcolors.BOLD+"OK"+ bcolors.ENDC)
     
 def test_get_authorisation(loginRandom):
