@@ -20,7 +20,7 @@ def blockPrint():
 def enablePrint():
     sys.stdout = sys.__stdout__
 
-def test_ajouter_utilisateur(loginRandom, charrandom):
+def test_ajouter_utilisateur(loginRandom, charrandom): #Test de l'ajout d'un utilisateur
     test1 = admin.Administrateur()
     test1.ajouter_utilisateur(loginRandom, charrandom)
     fichierLogin = open("login.txt", "r")
@@ -45,7 +45,7 @@ def test_ajouter_utilisateur(loginRandom, charrandom):
     print(bcolors.OKGREEN + "Test ajouter utilisateur : "+bcolors.BOLD+"OK"+ bcolors.ENDC)
     
     
-def test_ajouter_contact(loginRandom):
+def test_ajouter_contact(loginRandom): #Test de l'ajout d'un contact
     testAddC = user.Utilisateur()    
     blockPrint() #Permet de mute les prints de la fonction ajouter contact juste pour ces tests
     assert testAddC.ajouter_contact(loginRandom,"DUGUAIT_Nicolas;nicolas.duguait@hotmail.fr;0624522323;2 rue de la gare, Toulouse, 31400")==8,  bcolors.WARNING+ "Problème lors de l'ajout d'un premier contact" + bcolors.ENDC
