@@ -78,7 +78,7 @@ def test_search_contact(loginRandom, charrandom):
     enablePrint() #Permet de réactiver les prints
     print(bcolors.OKGREEN + "Test search_contact : "+bcolors.BOLD+"OK"+ bcolors.ENDC)
     
-def appeler_tests(): #test
+def appeler_tests():
     print(bcolors.HEADER + "Début des tests" + bcolors.ENDC)
     charrandom = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
     loginRandom = "TEST"+charrandom
